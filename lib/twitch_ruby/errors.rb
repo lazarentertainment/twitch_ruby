@@ -1,4 +1,4 @@
-module TwitchRuby
+module Twitch
   # The base class for all `Twitch` errors.
   class Error < StandardError
     # An error that occurred as the result of a request to the Twitch.tv API.

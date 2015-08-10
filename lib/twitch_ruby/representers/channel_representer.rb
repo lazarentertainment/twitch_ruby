@@ -1,41 +1,45 @@
-require 'roar/json'
+require 'roar/json/hal'
 
-module TwitchRuby::Representers::ChannelRepresenter
-  include Roar::JSON::HAL
+module Twitch
+  module Representers
+    module ChannelRepresenter
+      include Roar::JSON::HAL
+      include Roar::Hypermedia
 
-  property :title
+      property :title
   
 
-  property :background
-  property :banner
-  property :broadcaster_language
-  property :created_at
-  property :delay
-  property :display_name
-  property :email
-  property :followers
-  property :game
-  property :language
-  property :logo
-  property :mature
-  property :name
-  property :partner
-  property :profile_banner
-  property :profile_banner_background_color
-  property :status
-  property :stream_key
-  property :updated_at
-  property :url
-  property :video_banner
-  property :views
-  property :_id
+      property :background
+      property :banner
+      property :broadcaster_language
+      property :created_at
+      property :delay
+      property :display_name
+      property :email
+      property :followers
+      property :game
+      property :language
+      property :logo
+      property :mature
+      property :name
+      property :partner
+      property :profile_banner
+      property :profile_banner_background_color
+      property :status
+      property :stream_key
+      property :updated_at
+      property :url
+      property :video_banner
+      property :views
+      property :_id
   
-  # link :self do
-  #   "http://songs/#{title}"
-  # end
+      # link :self do
+      #   "http://songs/#{title}"
+      # end
   
+    end
+  end
 end
-
 
 #
 #

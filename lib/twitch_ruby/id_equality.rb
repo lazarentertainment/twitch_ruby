@@ -1,4 +1,4 @@
-module TwitchRuby
+module Twitch
   # @private
   module IdEquality
     def hash

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe TwitchRuby do
+describe Twitch do
   it 'has a version number' do
-    expect(TwitchRuby::VERSION).not_to be nil
+    expect(Twitch::VERSION).not_to be nil
   end
 end
