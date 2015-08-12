@@ -19,7 +19,9 @@ module Twitch
       
       @logger = Logging.logger(STDOUT)
       @logger.level = :debug
-      logger.info "Starting Twitch_Ruby gem"
+      logger.debug "Starting Twitch_Ruby gem"
+      
+      logger.debug self
     end
 
     attr_accessor :test_mode, :client_id, :client_secret, :twitch_base_url, :redirect_uri
