@@ -2,9 +2,6 @@ require 'faraday'
 require 'json'
 require 'twitch_ruby'
 require 'twitch_ruby/models/credentials'
-require 'uri'
-require 'cgi'
-require 'faraday/detailed_logger'
 
 module Twitch
   class Authenticator
@@ -48,7 +45,6 @@ module Twitch
           :headers => default_headers
         ) do |faraday|
           faraday.request  :url_encoded
-          faraday.response :detailed_logger
           faraday.adapter ::Faraday.default_adapter
         end
       end
