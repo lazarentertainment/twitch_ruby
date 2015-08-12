@@ -1,14 +1,13 @@
 require 'rspec'
-require 'twitch_ruby/transport'
 require 'spec_helper'
 
 describe Twitch::Transport do
   # after do
   #   WebMock.reset!
   # end
-  let(:client_id) { 'client_id' }
+  let(:access_token) { 'access_token' }
   let(:base_url) { 'https://api.twitch.tv/kraken/' }
-  let(:headers) { {'Content-Type'=>'application/json', 'Accept'=>'application/vnd.twitchtv.v3+json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Client-Id'=>client_id,  'Twitch-Ruby-Version'=>'0.1.0'} }
+  let(:headers) { {'Content-Type'=>'application/json', 'Accept'=>'application/vnd.twitchtv.v3+json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',  'Authorization' => 'OAuth ' + access_token,  'Twitch-Ruby-Version'=>Twitch::VERSION} }
   let(:transport) { Twitch::Transport.new }
   let(:response) { double(Faraday::Response, body: '') }
   
@@ -36,7 +35,7 @@ describe Twitch::Transport do
       stub_request(:get, url).
         with(:headers => headers).to_return(:status => status, :body => body, :headers => {})
 
-      response = transport.get_uri(:uri => url, :client_id => client_id)
+      response = transport.get_uri(:uri => url, :access_token => access_token)
       expect(response.status).to eq(status)
       expect(response.body).to be_an_instance_of(String)
       expect(response.body).to eq(body)

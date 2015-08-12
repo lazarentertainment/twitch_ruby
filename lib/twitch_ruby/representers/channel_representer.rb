@@ -1,14 +1,10 @@
-require 'roar/json/hal'
+require 'roar/json'
 
 module Twitch
   module Representers
     module ChannelRepresenter
-      include Roar::JSON::HAL
-      include Roar::Hypermedia
-
-      property :title
-  
-
+      include Roar::JSON
+      
       property :background
       property :banner
       property :broadcaster_language
@@ -34,9 +30,12 @@ module Twitch
       property :_id
   
       # link :self do
-      #   "http://songs/#{title}"
+      #   Twitch.configuration.twitch_base_url + "/channels/#{name}"
       # end
-  
+      # link :stream_key do
+      #   Twitch.configuration.twitch_base_url + "/channels/#{name}/stream_key"
+      # end
+      #
     end
   end
 end
