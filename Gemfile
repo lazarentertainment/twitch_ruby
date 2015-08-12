@@ -6,5 +6,7 @@ gemspec
 group :development do
   gem 'guard'
   gem 'guard-rspec', require: false
+  gem 'guard-bundler', require: false
   gem 'growl'
+  
 end
