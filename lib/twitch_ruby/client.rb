@@ -47,12 +47,8 @@ module Twitch
       end
     end
 
-    # USE OmniAuth for auth
     def auth
-      Twitch.logger.debug(Twitch.configuration)
-      authenticator = Twitch::Authenticator.new
-      @credentials = authenticator.authenticate(:authorization_code => authorization_code, :state => state)
-      Twitch.logger.debug()
+      
     end
     
     
