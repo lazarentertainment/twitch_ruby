@@ -7,7 +7,7 @@ module Twitch
   class Authenticator
 
     def authenticate(options)
-      Twitch.logger.debug('*** Authenticator.authenticate')
+      #Twitch.logger.debug('*** Authenticator.authenticate')
       
       postBody = {
         :code => options[:authorization_code],
@@ -19,7 +19,7 @@ module Twitch
         :state => options[:state],
       } 
       
-      Twitch.logger.debug(postBody)
+      #Twitch.logger.debug(postBody)
       
       response = build_connection(Twitch.configuration.oauth_token_uri).post(nil, postBody)
 

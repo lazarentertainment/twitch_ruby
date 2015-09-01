@@ -6,39 +6,42 @@ module Twitch
 
   class << self
     attr_accessor :instance
-  end
-  
-  def self.client(options = {})
-    self.instance ||= Twitch::Client.new
-    unless options.empty?
-      self.instance.config_instance(options)
+    
+    def client(options = {})
+      self.instance ||= Twitch.authenticate(options)
+      self.instance
     end
-    self.instance
+
+    def authenticate(options = {})
+      self.instance ||= Twitch::Client.new(options)
+      unless self.instance.authenticated?
+        self.instance.auth
+      end
+      self.instance
+    end
   end
-  
+
+
   class Client
     include Twitch::API
 
-    attr_accessor :authorization_code, :state, :access_token, :refresh_token #, :client_id, :client_secret
-    attr_accessor :credentials
+    attr_accessor :access_token, :authenticated
     
     # @return [Boolean]
-    def authorization_code?
-      !!authorization_code
-    end
-    
-    # @return [Boolean]
-    def credentials?
-      !!credentials
+    def authenticated?
+      !!authenticated
     end
     
     # Initializes a new Client object
     #
     # @param options [Hash]
     # @return [Twitch::Client]
-    def initialize
+    def initialize(options = {})
       Roar::HttpVerbs.transport_engine = Twitch::Transport
-      yield(self) if block_given?
+      unless options.empty?
+        self.config_instance(options)
+      end
+      self
     end
 
     def config_instance(options = {})
@@ -47,8 +50,20 @@ module Twitch
       end
     end
 
+    def user_name
+      @root.user_name
+    end
+
+    def scopes
+      @root.scopes
+    end
+
     def auth
-      
+      @root = self.root
+      if @root.valid
+        @authenticated = @root.valid
+      end
+      self
     end
     
     

@@ -2,10 +2,6 @@ require 'securerandom'
 require 'logging'
 
 module Twitch
-  
-  class << self
-    attr_accessor :configuration
-  end
     
   # @private
   class Configuration
@@ -19,15 +15,11 @@ module Twitch
       
       @logger = Logging.logger(STDOUT)
       @logger.level = :debug
-      logger.debug "Starting Twitch_Ruby gem"
-      
-      logger.debug self
     end
 
     attr_accessor :test_mode, :client_id, :client_secret, :twitch_base_url, :redirect_uri
     attr_accessor :oauth_token_uri, :oauth_authorize_uri
-    attr_accessor :logger
-    
+    attr_accessor :logger 
   end
   
   # Configure global settings for interacting with TwitchRuby. 
@@ -43,13 +35,24 @@ module Twitch
   # @param client_secret [String] When making requests to Twitch,
   #   you must specify the client secret for your application. 
   # @return [nil] nil
-  def self.configure
-    self.configuration ||= Twitch::Configuration.new
-    yield(configuration)
-  end
+
   
-  def self.logger
-    self.configuration.logger
+  class << self
+    attr_accessor :configuration
+
+    def configuration
+      @configuration ||= Twitch::Configuration.new
+    end
+
+    def configure
+      self.configuration ||= Twitch::Configuration.new
+      yield(configuration)
+    end
+
+    def logger
+      self.configuration.logger
+    end
+          
   end
-  
+
 end

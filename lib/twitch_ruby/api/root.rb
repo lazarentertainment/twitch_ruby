@@ -12,12 +12,10 @@ module Twitch
       # @return [Twitch::Models::Root] user's root 
       def root
         url = "#{Twitch.configuration.twitch_base_url}/"
-        
         root = Twitch::Models::Root.new
         root.extend(Twitch::Representers::RootRepresenter)
         root.get(:uri => url, :access_token => Twitch.client.access_token)
         root
-        
       end
 
 
