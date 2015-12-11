@@ -41,8 +41,9 @@ module Twitch
       def build_connection(uri)
     
         Faraday.new(
-          :url => uri,
-          :headers => default_headers
+          url: uri,
+          request: {open_timeout: 5, timeout: 5},
+          headers: default_headers
         ) do |faraday|
           faraday.request  :url_encoded
           faraday.adapter ::Faraday.default_adapter

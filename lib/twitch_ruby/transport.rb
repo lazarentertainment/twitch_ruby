@@ -36,7 +36,7 @@ module Twitch
           'Authorization' => 'OAuth ' + access_token
         }.merge(default_headers)
         
-        Faraday.new(:url => uri, :headers => current_headers) do |faraday|
+        Faraday.new(url: uri, request: {open_timeout: 5, timeout: 5}, headers: current_headers) do |faraday|
           faraday.use ::Faraday::Response::RaiseError
           #faraday.response :logger
           faraday.adapter ::Faraday.default_adapter
