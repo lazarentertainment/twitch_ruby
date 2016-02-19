@@ -8,13 +8,13 @@ module Twitch
     attr_accessor :instance
     
     def client(options = {})
-      self.instance ||= Twitch.authenticate(options)
+      self.instance ||= Twitch::Client.new(options)
       self.instance
     end
 
     def authenticate(options = {})
-      self.instance ||= Twitch::Client.new(options)
       unless self.instance.authenticated?
+        self.instance = Twitch::Client.new(options)
         self.instance.auth
       end
       self.instance
