@@ -28,7 +28,7 @@ describe Twitch::Client do
           'Accept'=>'application/vnd.twitchtv.v3+json', 
           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 
           'Authorization'=>'OAuth 2vqnk2oi2dea2x2lgkq164s8bs1szj', 'Content-Type'=>'application/json', 
-          'Twitch-Ruby-Version'=>'0.2.0', 'User-Agent'=>'Faraday v0.9.1'
+          'Twitch-Ruby-Version'=>'0.2.0', 'User-Agent'=>'Faraday v0.9.2'
         }).to_return(:status => 200, :body => root_response, :headers => {})
 
       expect(client).to be_instance_of(Twitch::Client)
