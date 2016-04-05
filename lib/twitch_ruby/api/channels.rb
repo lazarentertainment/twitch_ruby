@@ -19,7 +19,7 @@ module Twitch
         
         channel = Twitch::Models::Channel.new
         channel.extend(Twitch::Representers::ChannelRepresenter)
-        channel.get(:uri => url, :access_token => Twitch.client.access_token)
+        channel.get(:uri => url, :access_token => self.access_token)
         channel
         
       end
@@ -34,7 +34,7 @@ module Twitch
 
         channel = Twitch::Models::Channel.new
         channel.extend(Twitch::Representers::ChannelRepresenter)
-        channel.get(:uri => url, :access_token => Twitch.client.access_token)
+        channel.get(:uri => url, :access_token => self.access_token)
         channel
 
       end

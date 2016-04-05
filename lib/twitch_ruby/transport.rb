@@ -7,41 +7,50 @@ module Twitch
 
 
     def get_uri(options)
-      response = build_connection(options[:uri], options[:access_token]).get
-      puts response.body
-      response
+      connection = build_connection(options[:uri], options[:access_token])
+      if connection
+        response = connection.get
+        response
+      end
     end
 
     def post_uri(options)
-      build_connection(options[:uri], options[:access_token]).post(nil, options[:body])
+      connection = build_connection(options[:uri], options[:access_token])
+      connection.post(nil, options[:body]) if connection
     end
 
     def put_uri(options)
-      build_connection(options[:uri], options[:access_token]).put(nil, options[:body])
+      connection = build_connection(options[:uri], options[:access_token])
+      connection.put(nil, options[:body]) if connection
     end
 
     def patch_uri(options)
-      build_connection(options[:uri], options[:access_token]).patch(nil, options[:body])
+      connection = build_connection(options[:uri], options[:access_token])
+      connection.patch(nil, options[:body]) if connection
     end
 
     def delete_uri(options)
-      build_connection(options[:uri], options[:access_token]).delete
+      connection = build_connection(options[:uri], options[:access_token])
+      connection.delete if connection
     end
 
     private
 
       def build_connection(uri, access_token)
-      
-        current_headers = {
-          'Authorization' => 'OAuth ' + access_token
-        }.merge(default_headers)
-        
+        if access_token
+          current_headers = {
+            'Authorization' => 'OAuth ' + access_token
+          }.merge(default_headers)
+        else
+          current_headers = default_headers
+        end
+
         Faraday.new(url: uri, request: {open_timeout: 5, timeout: 5}, headers: current_headers) do |faraday|
           faraday.use ::Faraday::Response::RaiseError
           #faraday.response :logger
           faraday.adapter ::Faraday.default_adapter
         end
-        
+      
       end
     
       def default_headers

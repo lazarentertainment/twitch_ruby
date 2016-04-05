@@ -10,7 +10,7 @@ module Twitch
         
         stream = Twitch::Models::Stream.new
         stream.extend(Twitch::Representers::StreamRepresenter)
-        stream.get(:uri => url, :access_token => Twitch.client.access_token)
+        stream.get(:uri => url, :access_token => self.access_token)
         stream
         
       end
@@ -21,7 +21,7 @@ module Twitch
       #
       #   stream = Twitch::Models::Stream.new
       #   stream.extend(Twitch::Representers::StreamRepresenter)
-      #   stream.get(:uri => url, :access_token => Twitch.client.access_token)
+      #   stream.get(:uri => url, :access_token => self.access_token)
       #   stream
       #
       # end

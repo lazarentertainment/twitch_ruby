@@ -17,6 +17,13 @@ module Twitch
 
     attr_accessor :access_token, :authenticated
 
+    def authenticate(options = {})
+      unless self.authenticated?
+        self.auth
+      end
+      self
+    end
+    
     # @return [Boolean]
     def authenticated?
       !!authenticated
@@ -31,7 +38,7 @@ module Twitch
       unless options.empty?
         self.config_instance(options)
       end
-      self.auth
+      self.authenticate
       self
     end
 

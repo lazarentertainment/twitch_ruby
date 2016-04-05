@@ -24,14 +24,9 @@ module Twitch
       # }      
       def ingests
         url = "#{Twitch.configuration.twitch_base_url}/ingests"
-
         ingests = Twitch::Models::Ingests.new
         ingests.extend(Twitch::Representers::IngestsRepresenter)
-        ingests.get(:uri => url) #, :access_token => Twitch.client.access_token)
-
-        #https://github.com/apotonick/representable#representing-singular-models-and-collections
-        #[].extend(Twitch::Representers::IngestRepresenter.for_collection).from_hash([])
-  
+        ingests.get(:uri => url) #, :access_token => self.access_token)
         ingests
       end
     end
