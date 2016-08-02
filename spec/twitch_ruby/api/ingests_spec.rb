@@ -29,14 +29,14 @@ describe Twitch::API::Ingests do
           'Accept'=>'application/vnd.twitchtv.v3+json', 
           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 
           'Authorization'=>'OAuth access_token', 'Content-Type'=>'application/json', 
-          'Twitch-Ruby-Version'=>'0.2.0', 'User-Agent'=>'Faraday v0.9.2'
+          'Twitch-Ruby-Version'=>Twitch::VERSION, 'User-Agent'=>'Faraday v0.9.2'
         }).to_return(:status => 200, :body => root_response, :headers => {})
 
       stub_request(:get, "https://api.twitch.tv/kraken/ingests").
         with(:headers => {
           'Accept'=>'application/vnd.twitchtv.v3+json', 
           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 
-          'Content-Type'=>'application/json', 'Twitch-Ruby-Version'=>'0.2.0', 'User-Agent'=>'Faraday v0.9.2'}).
+          'Content-Type'=>'application/json', 'Twitch-Ruby-Version'=>Twitch::VERSION, 'User-Agent'=>'Faraday v0.9.2'}).
         to_return(:status => 200, :body => ingest_response, :headers => {})
     end
 
