@@ -26,17 +26,19 @@ describe Twitch::API::Channels do
     it 'returns a channel model instance' do
       stub_request(:get, "https://api.twitch.tv/kraken/").
         with(:headers => {
+          'Client-ID' => Twitch.configuration.client_id, 
           'Accept'=>'application/vnd.twitchtv.v3+json', 
           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 
           'Authorization'=>'OAuth access_token', 'Content-Type'=>'application/json', 
-          'Twitch-Ruby-Version'=>'0.2.0', 'User-Agent'=>'Faraday v0.9.2'
+          'Twitch-Ruby-Version'=>Twitch::VERSION, 'User-Agent'=>'Faraday v0.9.2'
         }).to_return(:status => 200, :body => root_response, :headers => {})
 
       stub_request(:get, "https://api.twitch.tv/kraken/channel").
         with(:headers => {
+          'Client-ID' => Twitch.configuration.client_id, 
           'Accept'=>'application/vnd.twitchtv.v3+json', 
           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 
-          'Authorization'=>'OAuth access_token', 'Content-Type'=>'application/json', 'Twitch-Ruby-Version'=>'0.2.0', 
+          'Authorization'=>'OAuth access_token', 'Content-Type'=>'application/json', 'Twitch-Ruby-Version'=>Twitch::VERSION, 
           'User-Agent'=>'Faraday v0.9.2'
         }).to_return(:status => 200, :body => channel_response, :headers => {})
       
@@ -52,17 +54,20 @@ describe Twitch::API::Channels do
     it 'returns a channel model instance' do
       stub_request(:get, "https://api.twitch.tv/kraken/").
         with(:headers => {
+          'Client-ID' => Twitch.configuration.client_id, 
           'Accept'=>'application/vnd.twitchtv.v3+json', 
           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 
           'Authorization'=>'OAuth access_token', 'Content-Type'=>'application/json', 
-          'Twitch-Ruby-Version'=>'0.2.0', 'User-Agent'=>'Faraday v0.9.2'
+          'Twitch-Ruby-Version'=>Twitch::VERSION, 'User-Agent'=>'Faraday v0.9.2'
         }).to_return(:status => 200, :body => root_response, :headers => {})
 
       stub_request(:get, "https://api.twitch.tv/kraken/channels/test_channel").
         with(:headers => {
           'Accept'=>'application/vnd.twitchtv.v3+json', 
           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 
-          'Authorization'=>'OAuth access_token', 'Content-Type'=>'application/json', 'Twitch-Ruby-Version'=>'0.2.0', 
+          'Authorization'=>'OAuth access_token', 
+          'Client-Id'=>'client_id', 
+          'Content-Type'=>'application/json', 'Twitch-Ruby-Version'=> Twitch::VERSION, 
           'User-Agent'=>'Faraday v0.9.2'
         }).to_return(:status => 200, :body => channel_response, :headers => {})
       
