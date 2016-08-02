@@ -39,7 +39,8 @@ module Twitch
       def build_connection(uri, access_token)
         if access_token
           current_headers = {
-            'Authorization' => 'OAuth ' + access_token
+            'Authorization' => 'OAuth ' + access_token,
+            'Client-ID' => Twitch.configuration.client_id
           }.merge(default_headers)
         else
           current_headers = default_headers
