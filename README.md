@@ -2,7 +2,7 @@
 
 [ ![Codeship Status for lazarentertainment/twitch_ruby](https://codeship.com/projects/0427ce90-95f4-0133-4170-5e03461aa760/status?branch=master)](https://codeship.com/projects/125347)
 
-The Gem provides a (currently incomplete) ruby implementation of the Twitch V3 API
+The Gem provides a (currently incomplete) ruby implementation of the [https://github.com/justintv/Twitch-API](Twitch V3 API)
 
 ## Installation
 
