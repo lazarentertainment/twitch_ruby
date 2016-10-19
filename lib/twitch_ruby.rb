@@ -1,4 +1,5 @@
 require "twitch_ruby/version"
+require 'twitch_ruby/oauth'
 require 'twitch_ruby/authenticator'
 #require 'twitch_ruby/id_equality'
 require 'twitch_ruby/errors'
