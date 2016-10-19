@@ -4,7 +4,7 @@ require 'oauth2'
 module Twitch
   class OAuth
 
-    def initialize(app_id, app_secret, options = {})
+    def initialize(client_id, client_secret, options = {})
       @id = client_id
       @secret = client_secret
 
@@ -15,23 +15,20 @@ module Twitch
         :token_url        => '/kraken/oauth2/token',
         :connection_opts  => {}}.merge(opts)
 
-      @client = OAuth2::Client.new(app_id, app_secret, @oauth_options)
+      @client = OAuth2::Client.new(client_id, client_secret, @oauth_options)
     end
 
-    def get_access_token(code, options)
+    def get_access_token_info(code, options)
       opts = options.dup
       options = {
         :redirect_uri => 'http://localhost:3000/oauth/callback'
       }.merge(opts)
 
       token = @client.auth_code.get_token(code, options)
+      {
+        "access_token" => token.token,
+        "token_type" => "bearer"
+      }
     end
-
-
-    response = token.get('/api/resource', :params => { 'query_foo' => 'bar' })
-    response.class.name
-    # => OAuth2::Response
-
-
   end
 end
