@@ -17,8 +17,8 @@ module Twitch
 
       property :access_token
       property :refresh_token
+      property :expires_in
       property :scope
-    
     end
   end
 end
