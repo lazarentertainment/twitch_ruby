@@ -5,7 +5,7 @@ require "roar/http_verbs"
 module Twitch
 
   class << self
-    
+
     def client(options = {})
       Twitch::Client.new(options)
     end
@@ -15,7 +15,7 @@ module Twitch
   class Client
     include Twitch::API
 
-    attr_accessor :access_token, :authenticated
+    attr_accessor :access_token, :refresh_token, :authenticated
 
     def authenticate(options = {})
       unless self.authenticated?
@@ -23,12 +23,12 @@ module Twitch
       end
       self
     end
-    
+
     # @return [Boolean]
     def authenticated?
       !!authenticated
     end
-    
+
     # Initializes a new Client object
     #
     # @param options [Hash]
@@ -63,9 +63,9 @@ module Twitch
       end
       self
     end
-    
-    
+
+
   end
-  
-  
+
+
 end
