@@ -21,13 +21,17 @@ module Twitch
     def get_access_token_info(code, options)
       opts = options.dup
       options = {
-        :redirect_uri => 'http://localhost:3000/oauth/callback'
+        :redirect_uri => 'http://localhost:3000/'
       }.merge(opts)
 
-      token = @client.auth_code.get_token(code, options)
+      result = @client.auth_code.get_token(code, options)
       {
-        "access_token" => token.token,
-        "token_type" => "bearer"
+        access_token: result.token,
+        refresh_token: result.refresh_token,
+        expires_in: result.expires_in,
+        options: result.options,
+        params: result.params,
+        token_type: "bearer"
       }
     end
   end
