@@ -1,4 +1,9 @@
 
+0.6.0 / 2017-11-22
+==================
+
+  * Add Passing refresh_token back to caller, cleanup Oauth config
+
 0.5.1 / 2016-10-19
 ==================
 
