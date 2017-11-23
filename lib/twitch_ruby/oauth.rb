@@ -35,16 +35,13 @@ module Twitch
       }
     end
 
-
     def refresh(refresh_token)
       token = OAuth2::AccessToken.from_hash(@client, {
-        refresh_token:  URI.escape(refresh_token)
+        refresh_token: URI.escape(refresh_token)
       })
-      result = token.refresh
-
-      Twitch.logger.debug(result.inspect)
+      result = token.refresh!
       {
-        'access_token' => result.access_token,
+        'access_token' => result.token,
         'refresh_token' => result.refresh_token
       }
     end
