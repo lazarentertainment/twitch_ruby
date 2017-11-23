@@ -1,3 +1,3 @@
 module Twitch
-  VERSION = "0.6.0"
+  VERSION = "0.6.1.pre.1"
 end
