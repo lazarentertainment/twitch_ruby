@@ -8,7 +8,7 @@ module Twitch
 
     def authenticate(options)
       #Twitch.logger.debug('*** Authenticator.authenticate')
-      
+
       postBody = {
         :code => options[:authorization_code],
         :redirect_uri => Twitch.configuration.redirect_uri,
@@ -17,13 +17,14 @@ module Twitch
         :scope => '',
         :grant_type => 'authorization_code',
         :state => options[:state],
-      } 
-      
-      #Twitch.logger.debug(postBody)
-      
-      response = build_connection(Twitch.configuration.oauth_token_uri).post(nil, postBody)
+      }
 
+      Twitch.logger.debug(postBody)
+      puts(postBody)
+      response = build_connection(Twitch.configuration.oauth_token_uri).post(nil, postBody)
+      puts(response)
       if response.status == 200
+        Twitch.logger.debug(response)
         Twitch::Models::Credentials.new().
         extend(Twitch::Representers::CredentialsRepresenter).
         from_json(response.body)
@@ -31,7 +32,6 @@ module Twitch
       elsif response.status == 403
         #{"error"=>"Forbidden", "status"=>403, "message"=>"Invalid client secret osa6e80lss3csxqu5w8iqafz2ecmuy8"}
       else
-        
         Twitch.logger.warn(JSON.parse(response.body))
       end
     end
@@ -39,7 +39,7 @@ module Twitch
     private
 
       def build_connection(uri)
-    
+
         Faraday.new(
           url: uri,
           request: {open_timeout: 5, timeout: 5},
