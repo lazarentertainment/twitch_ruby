@@ -1,4 +1,21 @@
 
+0.6.1 / 2017-11-23
+==================
+
+  * Merge pull request #4 from lazarentertainment/bugfix/auth_errors
+  * Fix Token refresh
+  * Merge branch 'develop' of https://github.com/lazarentertainment/twitch_ruby into develop
+  * Update Changelog
+
+0.6.0 / 2017-11-22
+==================
+
+  * Merge pull request #2 from lazarentertainment/feature/return_expires_in
+  * Update Oauth to support new Twitch Auth
+  * Add expires_in to returned credentials
+  * Merge tag 'v0.5.1' into develop
+  * Add Passing refresh_token back to caller, cleanup Oauth config
+
 0.5.1 / 2016-10-19
 ==================
 
