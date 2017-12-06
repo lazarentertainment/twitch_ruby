@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday'
   spec.add_dependency 'multi_json'
   spec.add_dependency 'representable'
-  spec.add_dependency 'roar', '~> 1.0.1'
+  spec.add_dependency 'roar', '~> 1.1.0'
   spec.add_dependency 'logging'
   spec.add_dependency 'oauth2'
 
